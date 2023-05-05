@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const emailVerificationToken = mongoose.Schema({
   owner: {
@@ -30,7 +30,9 @@ emailVerificationToken.methods.compareToken = async function (token) {
   return result;
 };
 
-module.exports = mongoose.model(
+const EmailVerificationToken =  mongoose.model(
   "EmailVerificationToken",
   emailVerificationToken
 );
+
+export default EmailVerificationToken;

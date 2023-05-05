@@ -1,15 +1,15 @@
 /**
  * Import Packages
  */
-const express = require("express");
-const dotenv = require("dotenv");
-const mongoose = require("mongoose");
-const morgan = require('morgan')
+import express from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import morgan from "morgan";
 
 /**
  * Load router
  */
-const usersRouter = require("./routes/user_routes");
+import usersRouter from "./routes/user_routes.js";
 
 /**
  * Init Application
@@ -17,16 +17,19 @@ const usersRouter = require("./routes/user_routes");
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(morgan('dev'))
+app.use(morgan("dev"));
 
 /**
  * Users Router
  */
 app.use("/api/users", usersRouter);
 
-app.use((req, res)=>{
-    res.status(404).json({error: "Page not found"})
-})
+/**
+ * Handle Not Found Page
+ */
+app.use((req, res) => {
+  res.status(404).json({ error: "Page not found" });
+});
 
 /**
  * Connect To DB And Listen to server

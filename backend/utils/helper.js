@@ -1,14 +1,12 @@
-const crypto = require("crypto");
+import crypto from "crypto";
 
-module.exports = {
-  generateRandomByte: () => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(30, (err, buffer) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(buffer.toString("hex"));
-      });
+export const generateRandomByte = () => {
+  return new Promise((resolve, reject) => {
+    crypto.randomBytes(30, (err, buffer) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(buffer.toString("hex"));
     });
-  },
+  });
 };

@@ -1,19 +1,19 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const {
+import {
   login,
   register,
   emailVerification,
   resendEmailVerification,
   forgetPassword,
   resetPassword,
-} = require("../controllers/users_controller");
-const {
+} from "../controllers/users_controller.js";
+import {
   registerValidation,
   validate,
   validatePassword,
-} = require("../validation/user_validation");
-const { isValidResetPasswordToken } = require("../middleware/user_middleware");
+} from "../validation/user_validation.js";
+import { isValidResetPasswordToken } from "../middleware/user_middleware.js";
 
 router.post("/register", registerValidation, validate, register);
 router.post("/verify", emailVerification);
@@ -28,4 +28,4 @@ router.put(
 );
 router.post("/login", validatePassword, login);
 
-module.exports = router;
+export default router;

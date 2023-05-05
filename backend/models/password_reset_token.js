@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const passwordResetToken = mongoose.Schema({
   owner: {
@@ -26,11 +26,13 @@ passwordResetToken.pre("save", async function (next) {
 });
 
 passwordResetToken.methods.compareToken = async function (token) {
-  const result =  await bcrypt.compare(token, this.token);
-  return result
+  const result = await bcrypt.compare(token, this.token);
+  return result;
 };
 
-module.exports = mongoose.model(
+const PasswordResetToken = mongoose.model(
   "PasswordResetToken",
   passwordResetToken
 );
+
+export default PasswordResetToken;
